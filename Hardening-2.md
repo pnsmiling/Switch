@@ -103,3 +103,56 @@ privilege level 15
 : Sets the privilege level to 15
 (highest privilege level, equivalent to the enable mode).
 ```
+```python
+The commands line vty 0 4 and line vty 5 15 configure different ranges
+of Virtual Terminal Lines (VTY). VTY lines are used for remote management
+and are typically accessed via Telnet, SSH
+
+line vty 0 4:
+This command configures the first five VTY lines (VTY 0 to VTY 4).
+It allows remote access to the first five VTY lines for management purposes.
+This range is commonly used for Telnet and SSH sessions.
+
+line vty 5 15:
+This command configures VTY lines 5 to 15.
+It allows remote access to VTY lines 5 to 15 for management purposes.
+This range is typically used for additional SSH sessions
+ when the initial five VTY lines are already occupied.
+```
+```python
+SNMP Group Configuration:
+snmp-server group MLI-RO-GROUP v3 priv access MLI-SNMP-RO:
+
+Creates an SNMP group named "MLI-RO-GROUP" with version 3 (v3)
+ and security level "priv" (encryption). This group is granted
+access to the views defined by the "MLI-SNMP-RO" access list.
+
+SNMP User Configuration:
+snmp-server user MLI-RO MLI-RO-GROUP v3 auth md5 Ag&mmnOn/906 priv aes 128 B3
+: Creates an SNMP user named "MLI-RO" associated with the
+"MLI-RO-GROUP" group. The user has authentication using MD5
+ with the password "Ag&mmnOn/906" and encryption (privacy) using AES-128 with the password "B3|".
+
+Enable SNMP Traps:
+snmp-server enable traps:
+Enables the generation and sending of SNMP traps.
+
+SNMP System Information Configuration:
+snmp-server location Vietnam_Halong2:
+Sets the device's physical location to "Vietnam_Halong2" for SNMP system information.
+
+SNMP Trap Source Interface:
+snmp-server trap-source Vlan100: Configures
+the source interface for sending SNMP traps as "Vlan100".
+
+SNMP Trap Destination Configuration:
+snmp-server host 10.216.3.37 version 3 priv MLI-RO
+
+: Configures the SNMP trap destination host with the IP address "10.216.3.37"
+ using SNMP version 3 (v3), and the "MLI-RO" SNMP user is used for authentication and encryption (privacy) of the traps.
+
+In summary, the configuration enables SNMP v3 with secure authentication and encryption.
+ It defines an SNMP group and user with appropriate access rights.
+SNMP traps are enabled and set to be sent to the specified SNMP trap host (10.216.3.37)
+using SNMPv3 security with privacy enabled. The device's location is also specified for SNMP system information.
+```
