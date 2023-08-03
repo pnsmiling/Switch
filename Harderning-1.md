@@ -21,7 +21,8 @@ device to discover and share information with neighboring Cisco devices.
 
 lldp run
 : This command enables Link Layer Discovery Protocol (LLDP), which is an
- industry-standard protocol for network devices to exchange information about their identities and capabilities with neighbors.
+industry-standard protocol for network devices to exchange information
+about their identities and capabilities with neighbors.
 
 no ip domain lookup
 : This command disables DNS lookups on the device, which can speed up
@@ -73,8 +74,9 @@ vtp version 2
 vtp domain MFC-VN
 
 The above commands configure the VLAN Trunking Protocol (VTP) mode as "transparent,"
- meaning the switch does not participate in VTP updates and doesn't synchronize VLAN configurations
- with other switches. Then, it creates several VLANs with specific names and VLAN IDs for different purposes in the network.
+meaning the switch does not participate in VTP updates and doesn't synchronize
+VLAN configurations with other switches. Then, it creates several VLANs with
+specific names and VLAN IDs for different purposes in the network.
 ```
 ```python
 ! Switch Management in-band
@@ -112,12 +114,12 @@ This means that the management traffic and user traffic flow through
 the same physical interfaces and share the same network infrastructure.
 
 For example, in a typical scenario, a network switch or router may have
- a dedicated management interface that is used exclusively for device
+a dedicated management interface that is used exclusively for device
 configuration and monitoring. This would be considered "out-of-band"
 management because it is separate from the data path used for regular network traffic.
 
 On the other hand, if a network device is managed through one of its
 regular data interfaces, where user traffic flows, it is considered
 "in-band" management. In this case, management commands, configuration
- updates, and monitoring data share the same network link as the user data.
+updates, and monitoring data share the same network link as the user data.
 ```
