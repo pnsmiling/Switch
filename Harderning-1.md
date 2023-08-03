@@ -57,3 +57,35 @@ vtp domain MFC-VN
 
 The above commands configure the VLAN Trunking Protocol (VTP) mode as "transparent," meaning the switch does not participate in VTP updates and doesn't synchronize VLAN configurations with other switches. Then, it creates several VLANs with specific names and VLAN IDs for different purposes in the network.
 ```
+```python
+! Switch Management in-band
+interface Vlan100
+description Management
+ip address 10.251.34.2 255.255.255.224
+no shutdown
+no ip redirects
+no ip unreachables
+no ip proxy-arp
+
+! For Layer 2 Access Switch Configure Gateway
+ip default-gateway 10.251.144.1
+
+! SSHv2 Configuration Standard
+ip domain name manuli.com
+crypto key generate rsa general-keys label ssh-key modulus 2048
+ip ssh version 2
+ip ssh authentication-retries 3
+ip ssh time-out 30
+ip ssh server algorithm encryption aes256-ctr aes256-cbc
+ip ssh server algorithm mac hmac-sha2-256 hmac-sha2-512
+ip ssh client algorithm encryption aes256-ctr aes256-cbc
+ip ssh client algorithm mac hmac-sha2-256 hmac-sha2-512
+
+In this configuration, the switch is set up for in-band management using VLAN 100 with the IP address 10.251.34.2/27. It enables SSHv2 for secure remote access, generates RSA keys, and sets various SSH parameters. The NTP (Network Time Protocol) configuration is not provided here but would typically be added to synchronize the switch's time with an NTP server for accurate timekeeping.
+
+"in-band" refers to the method of managing and controlling network devices using the same data path that is used for regular user traffic. This means that the management traffic and user traffic flow through the same physical interfaces and share the same network infrastructure.
+
+For example, in a typical scenario, a network switch or router may have a dedicated management interface that is used exclusively for device configuration and monitoring. This would be considered "out-of-band" management because it is separate from the data path used for regular network traffic.
+
+On the other hand, if a network device is managed through one of its regular data interfaces, where user traffic flows, it is considered "in-band" management. In this case, management commands, configuration updates, and monitoring data share the same network link as the user data.
+```
