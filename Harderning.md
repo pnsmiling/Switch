@@ -1,4 +1,4 @@
-``python
+```python
 service timestamps debug datetime msec localtime show-timezone: This command adds a timestamp with milliseconds and the local time zone to debug messages.
 
 service timestamps log datetime msec localtime show-timezone: This command adds a timestamp with milliseconds and the local time zone to log messages.
@@ -32,4 +32,11 @@ no ip tftp source-interface Vlan100: This command removes the TFTP source interf
 enable secret security: This command sets an encrypted enable secret password for privileged mode access.
 
 username manulife privilege 15 secret 5 $151H29$2010qNKUjjSOnFJwwCAl: This command creates a local user account with the username "manulife," assigns it privilege level 15 (full access), and sets an encrypted password.
-``
+```
+```python
+vtp mode transparent
+vtp version 2
+vtp domain MFC-VN
+
+The above commands configure the VLAN Trunking Protocol (VTP) mode as "transparent," meaning the switch does not participate in VTP updates and doesn't synchronize VLAN configurations with other switches. Then, it creates several VLANs with specific names and VLAN IDs for different purposes in the network.
+```
